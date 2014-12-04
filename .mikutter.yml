@@ -1,0 +1,13 @@
+---
+slug: :mikutter_vimize
+depends:
+  mikutter: '3.0'
+  plugin:
+  - gui
+  - gtk
+  - uitranslator
+  - command
+version: '0.0.1'
+author: pocke
+name: mikutter vimize
+description: mikutter も Vim
