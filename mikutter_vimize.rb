@@ -88,5 +88,6 @@ v.define(Vimizer::Key.new('h', ctrl: true), 'i') do |opt|
   pos = buffer.cursor_position
   text[pos - 1] = '' if pos - 1 >= 0
   buffer.text = text
-  pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, -(text.size - pos + 1), false)
+  new_pos = buffer.cursor_position
+  pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, pos - new_pos - 1, false)
 end
