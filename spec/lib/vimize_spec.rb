@@ -15,7 +15,7 @@ describe Vimizer do
 
   describe '#define' do
     let(:mode){'i'}
-    subject{instance.define(key, mode){}}
+    subject{instance.define(key, mode){|vimizer, opt|}}
 
     context 'invalid mode' do
       let(:mode){'q'}

@@ -19,6 +19,8 @@ class Vimizer
 
 
   def define(key, mode, &block)
+    block = block.curry(2)[self]
+
     role = case mode
       when 'i'
         :postbox
