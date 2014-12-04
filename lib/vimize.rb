@@ -15,14 +15,16 @@ class Vimizer
   def initialize(slug)
     @slug = slug
     @plugin = Plugin[:slug]
+    @mode = :i
   end
+  attr_accessor :mode
 
 
   def define(key, mode, &block)
     block = block.curry(2)[self]
 
     role = case mode
-      when 'i'
+      when :i
         :postbox
       else
         raise InvalidMode, "#{mode} is invalid mode."
@@ -32,7 +34,7 @@ class Vimizer
 
     @plugin.command(slug, {
       name:      name,
-      condition: lambda {|opt| true},
+      condition: lambda {|opt| @mode == mode},
       visible:   false,
       role:      role
     }, &block)

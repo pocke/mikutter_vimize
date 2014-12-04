@@ -9,7 +9,7 @@ Plugin.create(:vimize){}
 
 v = Vimizer.new(:vimize)
 
-v.define(Vimizer::Key.new('h', ctrl: true), 'i') do |vimizer, opt|
+v.define(Vimizer::Key.new('h', ctrl: true), :i) do |vimizer, opt|
   pbox = Vimizer.get_postbox(opt)
   buffer = pbox.buffer
 

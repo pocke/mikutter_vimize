@@ -14,11 +14,11 @@ describe Vimizer do
   end
 
   describe '#define' do
-    let(:mode){'i'}
+    let(:mode){:i}
     subject{instance.define(key, mode){|vimizer, opt|}}
 
     context 'invalid mode' do
-      let(:mode){'q'}
+      let(:mode){:q}
 
       it do
         expect{subject}.to raise_error Vimizer::InvalidMode
