@@ -23,7 +23,7 @@ class Vimizer
       when 'i'
         :postbox
       else
-        raise InvalidMode, "#{mode} is invalide mode."
+        raise InvalidMode, "#{mode} is invalid mode."
       end
     name = "#{mode}_#{key.to_name}"
     slug = :"#{@slug}_#{mode}_#{key.to_slug}"

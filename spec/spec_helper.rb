@@ -86,6 +86,31 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
 end
 
 require_relative '../lib/vimize'
+
+
+# mock
+
+class Plugin
+  class << self
+    def [](arg)
+      Plugin.new
+    end
+  end
+
+  def command(*args)
+
+  end
+end
+
+UserConfig = {}
+UserConfig[Vimizer::ConfigKey] = {
+  1 => {
+    key: 'Return',
+    name: '投稿する',
+    slug: :post_it
+  }
+}

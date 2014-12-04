@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rspec'
-gem 'guard-rspec'
-gem 'pry'
-gem 'pry-doc'
+group :test do
+  gem 'rspec'
+  gem 'guard-rspec'
+  gem 'pry'
+  gem 'pry-doc'
+end
