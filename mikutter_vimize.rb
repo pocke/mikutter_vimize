@@ -20,3 +20,35 @@ v.define(Vimizer::Key.new('h', ctrl: true), :i) do |vimizer, opt|
   new_pos = buffer.cursor_position
   pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, pos - new_pos - 1, false)
 end
+
+v.define(Vimizer::Key.new('Escape'), :i) do |vimizer, opt|
+  vimizer.mode = :n
+end
+
+v.define(Vimizer::Key.new('i'), :n) do |vimizer, opt|
+  vimizer.mode = :i
+end
+
+v.define(Vimizer::Key.new('h'), :n) do |vimizer, opt|
+  pbox = Vimizer.get_postbox(opt)
+  pos = pbox.buffer.cursor_position
+  pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, -1, false)
+end
+
+v.define(Vimizer::Key.new('j'), :n) do |vimizer, opt|
+  pbox = Vimizer.get_postbox(opt)
+  pos = pbox.buffer.cursor_position
+  pbox.move_cursor(Gtk::MOVEMENT_DISPLAY_LINES, 1, false)
+end
+
+v.define(Vimizer::Key.new('k'), :n) do |vimizer, opt|
+  pbox = Vimizer.get_postbox(opt)
+  pos = pbox.buffer.cursor_position
+  pbox.move_cursor(Gtk::MOVEMENT_DISPLAY_LINES, -1, false)
+end
+
+v.define(Vimizer::Key.new('l'), :n) do |vimizer, opt|
+  pbox = Vimizer.get_postbox(opt)
+  pos = pbox.buffer.cursor_position
+  pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, 1, false)
+end

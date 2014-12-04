@@ -24,7 +24,7 @@ class Vimizer
     block = block.curry(2)[self]
 
     role = case mode
-      when :i
+      when :i, :n
         :postbox
       else
         raise InvalidMode, "#{mode} is invalid mode."
