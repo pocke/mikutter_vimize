@@ -3,6 +3,8 @@ class Vimizer
 
   ConfigKey = :shortcutkey_keybinds
 
+  class InvalidMode < StandardError; end
+
   class << self
     def get_postbox(opt)
       Plugin.create(:gtk).widgetof(opt.widget).widget_post
@@ -20,6 +22,8 @@ class Vimizer
     role = case mode
       when 'i'
         :postbox
+      else
+        raise InvalidMode, "#{mode} is invalide mode."
       end
     name = "#{mode}_#{key.to_name}"
     slug = :"#{@slug}_#{mode}_#{key.to_slug}"
