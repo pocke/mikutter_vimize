@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/pocke/mikutter_vimize.svg?branch=master)](https://travis-ci.org/pocke/mikutter_vimize)
+[![Coverage Status](https://img.shields.io/coveralls/pocke/mikutter_vimize.svg)](https://coveralls.io/r/pocke/mikutter_vimize?branch=master)
+[![Code Climate](https://codeclimate.com/github/pocke/mikutter_vimize/badges/gpa.svg)](https://codeclimate.com/github/pocke/mikutter_vimize)
 
 
 mikuter vimizer
