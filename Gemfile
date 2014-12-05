@@ -6,4 +6,5 @@ group :test do
   gem 'guard-rspec'
   gem 'pry'
   gem 'pry-doc'
+  gem 'coveralls', require: false
 end

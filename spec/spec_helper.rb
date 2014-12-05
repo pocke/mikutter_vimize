@@ -89,6 +89,8 @@ RSpec.configure do |config|
 
 end
 
+require 'coveralls'
+Coveralls.wear!
 require_relative '../lib/vimize'
 
 
