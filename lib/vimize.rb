@@ -19,8 +19,20 @@ class Vimizer
     @plugin = Plugin[:slug]
     @mode = :i
   end
-  attr_accessor :mode
 
+  # modeを変更し、イベント vimizer_mode_change を発行する
+  # ==== Args
+  # [mode] Symbol
+  # ==== Return
+  # mode
+  def mode=(mode)
+    type_strict mode => Symbol
+
+    @mode = mode
+    Plugin.call(:vimizer_mode_change, mode)
+    mode
+  end
+  attr_reader :mode
 
   # mikutterコマンドと、shortcutkeyを定義する。
   # ==== Args

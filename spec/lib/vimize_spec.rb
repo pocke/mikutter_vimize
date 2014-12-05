@@ -8,9 +8,11 @@ describe Vimizer do
   describe '.new' do
     subject{instance}
 
-    it 'should return Vimizer instance' do
-      expect(subject).to be_a Vimizer
-    end
+    it{is_expected.to be_a Vimizer}
+  end
+
+  describe '#mode=' do
+    # TODO
   end
 
   describe '#define' do
