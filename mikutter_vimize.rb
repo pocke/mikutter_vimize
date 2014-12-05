@@ -52,3 +52,13 @@ v.define(Vimizer::Key.new('l'), :n) do |vimizer, opt|
   pos = pbox.buffer.cursor_position
   pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, 1, false)
 end
+
+v.plugin_eval do
+  # ノーマルモードで定義されているキー以外を無視する。
+  filter_keypress do |key, widget, executed|
+    if v.mode == :n and widget.class.find_role_ancestor(:postbox)
+      executed = true
+    end
+    [key, widget, executed]
+  end
+end

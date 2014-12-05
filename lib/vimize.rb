@@ -54,4 +54,9 @@ class Vimizer
     i = UserConfig[ConfigKey].keys.max + 1
     UserConfig[ConfigKey][i] = {key: key.to_config, name: name, slug: slug}
   end
+
+  # pluginのコンテキストでblockを実行する。
+  def plugin_eval(&block)
+    @plugin.instance_eval(&block)
+  end
 end
