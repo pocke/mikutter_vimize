@@ -36,4 +36,17 @@ describe Vimizer do
       end
     end
   end
+
+  describe '#keybind_find_or_create' do
+    # TODO
+  end
+
+  describe '#plugin_eval' do
+    let(:block){proc{self}}
+    subject{instance.plugin_eval(&block)}
+
+    it 'should call block with plugin context' do
+      expect(subject).to be_a Plugin
+    end
+  end
 end
