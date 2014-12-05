@@ -6,6 +6,8 @@ class Vimizer
   class InvalidMode < StandardError; end
 
   class << self
+    # ==== Return
+    # Gtk::TextView
     def get_postbox(opt)
       Plugin.create(:gtk).widgetof(opt.widget).widget_post
     end
@@ -20,6 +22,11 @@ class Vimizer
   attr_accessor :mode
 
 
+  # mikutterコマンドと、shortcutkeyを定義する。
+  # ==== Args
+  # [key] Vimizer::Key
+  # [mode] モードを表すSymbol
+  # [&block] mikutterコマンドの実態。第一引数にVimizer, 第二引数にはいつものアレが渡される。
   def define(key, mode, &block)
     block = block.curry(2)[self]
 
@@ -42,6 +49,13 @@ class Vimizer
     keybind_find_or_create(key, name, slug)
   end
 
+  # shortcutkeyが存在すればそれを返し、存在しなければ新しくshortcutkeyを作成して返す。
+  # ==== Args
+  # [key] Vimizer::Key
+  # [name] shortcutkey に登録される name
+  # [slug] shortcutkey に登録される slug
+  # ==== Return
+  # UserConfig に格納されている Hash
   def keybind_find_or_create(key, name, slug)
     bind = UserConfig[ConfigKey].values.select do |v|
       v[:key] == key.to_config and v[:name] == name and v[:slug] == slug

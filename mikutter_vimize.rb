@@ -9,6 +9,8 @@ Plugin.create(:vimize){}
 
 v = Vimizer.new(:vimize)
 
+# ----------------------------------- Insert mode
+
 v.define(Vimizer::Key.new('h', ctrl: true), :i) do |vimizer, opt|
   pbox = Vimizer.get_postbox(opt)
   buffer = pbox.buffer
@@ -24,6 +26,8 @@ end
 v.define(Vimizer::Key.new('Escape'), :i) do |vimizer, opt|
   vimizer.mode = :n
 end
+
+# ------------------------------------ Normal mode
 
 v.define(Vimizer::Key.new('i'), :n) do |vimizer, opt|
   vimizer.mode = :i
