@@ -33,6 +33,12 @@ v.define(Vimizer::Key.new('i'), :n) do |vimizer, opt|
   vimizer.mode = :i
 end
 
+v.define(Vimizer::Key.new('a'), :n) do |vimizer, opt|
+  vimizer.mode = :i
+  pbox = Vimizer.get_postbox(opt)
+  pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, 1, false)
+end
+
 v.define(Vimizer::Key.new('h'), :n) do |vimizer, opt|
   pbox = Vimizer.get_postbox(opt)
   pos = pbox.buffer.cursor_position
