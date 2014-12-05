@@ -104,7 +104,6 @@ class Plugin
   end
 
   def command(*args)
-
   end
 end
 

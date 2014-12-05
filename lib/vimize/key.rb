@@ -12,8 +12,8 @@ class Vimizer::Key
   end
 
   def to_name
-    unless @ctrl and @shift and @meta
-      return @main
+    unless @ctrl or @shift or @meta
+      return @main.to_sym
     end
 
     return :"<#{'C-' if @ctrl}#{'S-' if @shift}#{'M-' if @meta}#{@main}>"
