@@ -28,6 +28,18 @@ v.define(Vimizer::Key.new('Escape'), :i) do |vimizer, opt|
   vimizer.mode = :n
 end
 
+v.define(Vimizer::Key.new('w', ctrl: true), :i) do |vimizer, opt|
+  pbox = Vimizer.get_postbox(opt)
+  pos = pbox.buffer.cursor_position
+  text = pbox.buffer.text
+  first, _ = Tango.get_index(text, pos -1)
+  text[first..(pos - 1)] = ''
+
+  pbox.buffer.text = text
+
+  pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, first - text.size, false)
+end
+
 # ------------------------------------ Normal mode
 
 v.define(Vimizer::Key.new('i'), :n) do |vimizer, opt|
