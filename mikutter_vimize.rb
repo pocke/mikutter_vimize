@@ -3,6 +3,7 @@
 # http://opensource.org/licenses/mit-license.php
 
 require_relative 'lib/vimize'
+require_relative 'lib/tango'
 
 
 Plugin.create(:vimize){}
@@ -61,6 +62,26 @@ v.define(Vimizer::Key.new('l'), :n) do |vimizer, opt|
   pbox = Vimizer.get_postbox(opt)
   pos = pbox.buffer.cursor_position
   pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, 1, false)
+end
+
+v.define(Vimizer::Key.new('w'), :n) do |vimizer, opt|
+  pbox = Vimizer.get_postbox(opt)
+  pos = pbox.buffer.cursor_position
+  text = pbox.buffer.text
+  new_index = Tango.next_word_head(text, pos)
+  unless new_index - pos == 0
+    pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, new_index - pos, false)
+  end
+end
+
+v.define(Vimizer::Key.new('b'), :n) do |vimizer, opt|
+  pbox = Vimizer.get_postbox(opt)
+  pos = pbox.buffer.cursor_position
+  text = pbox.buffer.text
+  new_index = Tango.prev_word_head(text, pos)
+  unless new_index - pos > 0
+    pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, new_index - pos, false)
+  end
 end
 
 v.plugin_eval do

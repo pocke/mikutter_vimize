@@ -31,4 +31,17 @@ module Tango
 
     return [first, last]
   end
+
+  # カーソル下の単語の次の単語の始点を返す。
+  def next_word_head(text, index)
+    _, i = get_index(text, index)
+    return i + 1
+  end
+
+  # カーソル下の単語の前の単語の始点を返す。
+  def prev_word_head(text, index)
+    i, _ = get_index(text, index)
+    i, _ = get_index(text, i - 1)
+    return i
+  end
 end

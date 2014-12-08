@@ -27,4 +27,24 @@ describe Tango do
       end
     end
   end
+
+  describe '.next_word_head' do
+    let(:text){'ほげフガ'}
+    let(:index){0}
+    subject{Tango.next_word_head(text, index)}
+
+    it do
+      is_expected.to eq 2
+    end
+  end
+
+  describe '.prev_word_head' do
+    let(:text){'ほげフガ'}
+    let(:index){2}
+    subject{Tango.prev_word_head(text, index)}
+
+    it do
+      is_expected.to eq 0
+    end
+  end
 end
