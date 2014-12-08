@@ -37,7 +37,9 @@ v.define(Vimizer::Key.new('w', ctrl: true), :i) do |vimizer, opt|
 
   pbox.buffer.text = text
 
-  pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, first - text.size, false)
+  unless first - text.size == 0
+    pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, first - text.size, false)
+  end
 end
 
 # ------------------------------------ Normal mode
