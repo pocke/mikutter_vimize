@@ -34,4 +34,33 @@ class PostBox
       @pbox.move_cursor(step, sign * n, false)
     end
   end
+
+  def delete(position)
+    to = case position
+      when Integer
+        position
+      when Range
+        position.begin
+      else
+        raise ArgumentError, "Position should be Integer or Range"
+      end
+
+    t = text
+    t[position] = ''
+    self.text = t
+
+    go(to)
+  end
+
+  def text
+    return @pbox.buffer.text
+  end
+
+  def text=(str)
+    @pbox.buffer.text = str
+  end
+
+  def cursor_position
+    return @pbox.buffer.cursor_position
+  end
 end

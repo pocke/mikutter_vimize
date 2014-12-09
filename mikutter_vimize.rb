@@ -13,16 +13,10 @@ v = Vimizer.new(:vimize)
 # ----------------------------------- Insert mode
 
 v.define(Vimizer::Key.new('h', ctrl: true), :i) do |vimizer, opt|
-  pbox = Vimizer.get_postbox(opt)
-  buffer = pbox.buffer
+  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pos = pbox.cursor_position
 
-  text = buffer.text
-  pos = buffer.cursor_position
-  text[pos - 1] = '' if pos - 1 >= 0
-  buffer.text = text
-
-  pb = Vimizer::PostBox.new(pbox)
-  pb.go(pos - 1)
+  pbox.delete(pos -1) if pos - 1 >= 0
 end
 
 v.define(Vimizer::Key.new('Escape'), :i) do |vimizer, opt|
@@ -30,16 +24,12 @@ v.define(Vimizer::Key.new('Escape'), :i) do |vimizer, opt|
 end
 
 v.define(Vimizer::Key.new('w', ctrl: true), :i) do |vimizer, opt|
-  pbox = Vimizer.get_postbox(opt)
-  pos = pbox.buffer.cursor_position
-  text = pbox.buffer.text
+  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pos = pbox.cursor_position
+  text = pbox.text
   first, _ = Tango.get_index(text, pos -1)
-  text[first..(pos - 1)] = ''
 
-  pbox.buffer.text = text
-
-  pb = Vimizer::PostBox.new(pbox)
-  pb.go(first)
+  pbox.delete(first..(pos - 1))
 end
 
 # ------------------------------------ Normal mode
@@ -75,22 +65,20 @@ v.define(Vimizer::Key.new('l'), :n) do |vimizer, opt|
 end
 
 v.define(Vimizer::Key.new('w'), :n) do |vimizer, opt|
-  pbox = Vimizer.get_postbox(opt)
-  pos = pbox.buffer.cursor_position
-  text = pbox.buffer.text
+  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pos = pbox.cursor_position
+  text = pbox.text
   new_index = Tango.next_word_head(text, pos)
 
-  pbox = PostBox.new(Vimizer.get_postbox(opt))
   pbox.go(new_index)
 end
 
 v.define(Vimizer::Key.new('b'), :n) do |vimizer, opt|
-  pbox = Vimizer.get_postbox(opt)
-  pos = pbox.buffer.cursor_position
-  text = pbox.buffer.text
+  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pos = pbox.cursor_position
+  text = pbox.text
   new_index = Tango.prev_word_head(text, pos)
 
-  pbox = PostBox.new(Vimizer.get_postbox(opt))
   pbox.go(new_index)
 end
 
