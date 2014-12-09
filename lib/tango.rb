@@ -41,6 +41,8 @@ module Tango
   # カーソル下の単語の前の単語の始点を返す。
   def prev_word_head(text, index)
     i, _ = get_index(text, index)
+    return 0 if i == 0
+
     i, _ = get_index(text, i - 1)
     return i
   end

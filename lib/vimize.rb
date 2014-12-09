@@ -1,5 +1,6 @@
 class Vimizer
   require_relative 'vimize/key'
+  require_relative 'vimize/post_box'
 
   ConfigKey = :shortcutkey_keybinds
 
@@ -9,7 +10,8 @@ class Vimizer
     # ==== Return
     # Gtk::TextView
     def get_postbox(opt)
-      Plugin.create(:gtk).widgetof(opt.widget).widget_post
+      pbox = Plugin.create(:gtk).widgetof(opt.widget).widget_post
+      return PostBox.new(pbox)
     end
   end
 
