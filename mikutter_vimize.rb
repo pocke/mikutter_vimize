@@ -13,7 +13,7 @@ v = Vimizer.new(:vimize)
 # ----------------------------------- Insert mode
 
 v.define(Vimizer::Key.new('h', ctrl: true), :i) do |vimizer, opt|
-  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox = Vimizer.get_postbox(opt)
   pos = pbox.cursor_position
 
   pbox.delete(pos -1) if pos - 1 >= 0
@@ -24,7 +24,7 @@ v.define(Vimizer::Key.new('Escape'), :i) do |vimizer, opt|
 end
 
 v.define(Vimizer::Key.new('w', ctrl: true), :i) do |vimizer, opt|
-  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox = Vimizer.get_postbox(opt)
   pos = pbox.cursor_position
   text = pbox.text
   first, _ = Tango.get_index(text, pos -1)
@@ -40,32 +40,32 @@ end
 
 v.define(Vimizer::Key.new('a'), :n) do |vimizer, opt|
   vimizer.mode = :i
-  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox = Vimizer.get_postbox(opt)
   pbox.move(:right, 1)
 end
 
 v.define(Vimizer::Key.new('h'), :n) do |vimizer, opt|
-  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox = Vimizer.get_postbox(opt)
   pbox.move(:left, 1)
 end
 
 v.define(Vimizer::Key.new('j'), :n) do |vimizer, opt|
-  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox = Vimizer.get_postbox(opt)
   pbox.move(:down, 1)
 end
 
 v.define(Vimizer::Key.new('k'), :n) do |vimizer, opt|
-  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox = Vimizer.get_postbox(opt)
   pbox.move(:up, 1)
 end
 
 v.define(Vimizer::Key.new('l'), :n) do |vimizer, opt|
-  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox = Vimizer.get_postbox(opt)
   pbox.move(:right, 1)
 end
 
 v.define(Vimizer::Key.new('w'), :n) do |vimizer, opt|
-  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox = Vimizer.get_postbox(opt)
   pos = pbox.cursor_position
   text = pbox.text
   new_index = Tango.next_word_head(text, pos)
@@ -74,7 +74,7 @@ v.define(Vimizer::Key.new('w'), :n) do |vimizer, opt|
 end
 
 v.define(Vimizer::Key.new('b'), :n) do |vimizer, opt|
-  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox = Vimizer.get_postbox(opt)
   pos = pbox.cursor_position
   text = pbox.text
   new_index = Tango.prev_word_head(text, pos)

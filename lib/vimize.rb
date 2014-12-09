@@ -10,7 +10,8 @@ class Vimizer
     # ==== Return
     # Gtk::TextView
     def get_postbox(opt)
-      Plugin.create(:gtk).widgetof(opt.widget).widget_post
+      pbox = Plugin.create(:gtk).widgetof(opt.widget).widget_post
+      return PostBox.new(pbox)
     end
   end
 

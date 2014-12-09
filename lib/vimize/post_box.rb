@@ -1,4 +1,4 @@
-class PostBox
+class Vimizer::PostBox
   # ==== Args
   # [pbox] Gtk::TextView
   def initialize(pbox)
