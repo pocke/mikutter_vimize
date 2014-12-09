@@ -14,7 +14,7 @@ class Vimizer::PostBox
   end
 
   # ==== Args
-  # [direction]移動したい方向。 :up, :down, :right, :left
+  # [direction] 移動したい方向。 :up, :down, :right, :left
   # [n] 移動する量
   def move(direction, n)
     step, sign = case direction
