@@ -20,8 +20,9 @@ v.define(Vimizer::Key.new('h', ctrl: true), :i) do |vimizer, opt|
   pos = buffer.cursor_position
   text[pos - 1] = '' if pos - 1 >= 0
   buffer.text = text
-  new_pos = buffer.cursor_position
-  pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, pos - new_pos - 1, false)
+
+  pb = Vimizer::PostBox.new(pbox)
+  pb.go(pos - 1)
 end
 
 v.define(Vimizer::Key.new('Escape'), :i) do |vimizer, opt|
@@ -37,9 +38,8 @@ v.define(Vimizer::Key.new('w', ctrl: true), :i) do |vimizer, opt|
 
   pbox.buffer.text = text
 
-  unless first - text.size == 0
-    pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, first - text.size, false)
-  end
+  pb = Vimizer::PostBox.new(pbox)
+  pb.go(first)
 end
 
 # ------------------------------------ Normal mode

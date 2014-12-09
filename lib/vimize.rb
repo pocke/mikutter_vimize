@@ -1,5 +1,6 @@
 class Vimizer
   require_relative 'vimize/key'
+  require_relative 'vimize/post_box'
 
   ConfigKey = :shortcutkey_keybinds
 
