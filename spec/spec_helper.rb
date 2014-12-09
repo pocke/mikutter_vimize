@@ -93,7 +93,7 @@ end
 
 require 'coveralls'
 Coveralls.wear!
-require_relative '../lib/vimize'
+require_relative '../lib/vimizer'
 require_relative '../lib/tango'
 
 
