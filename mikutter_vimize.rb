@@ -50,32 +50,28 @@ end
 
 v.define(Vimizer::Key.new('a'), :n) do |vimizer, opt|
   vimizer.mode = :i
-  pbox = Vimizer.get_postbox(opt)
-  pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, 1, false)
+  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox.move(:right, 1)
 end
 
 v.define(Vimizer::Key.new('h'), :n) do |vimizer, opt|
-  pbox = Vimizer.get_postbox(opt)
-  pos = pbox.buffer.cursor_position
-  pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, -1, false)
+  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox.move(:left, 1)
 end
 
 v.define(Vimizer::Key.new('j'), :n) do |vimizer, opt|
-  pbox = Vimizer.get_postbox(opt)
-  pos = pbox.buffer.cursor_position
-  pbox.move_cursor(Gtk::MOVEMENT_DISPLAY_LINES, 1, false)
+  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox.move(:down, 1)
 end
 
 v.define(Vimizer::Key.new('k'), :n) do |vimizer, opt|
-  pbox = Vimizer.get_postbox(opt)
-  pos = pbox.buffer.cursor_position
-  pbox.move_cursor(Gtk::MOVEMENT_DISPLAY_LINES, -1, false)
+  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox.move(:up, 1)
 end
 
 v.define(Vimizer::Key.new('l'), :n) do |vimizer, opt|
-  pbox = Vimizer.get_postbox(opt)
-  pos = pbox.buffer.cursor_position
-  pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, 1, false)
+  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox.move(:right, 1)
 end
 
 v.define(Vimizer::Key.new('w'), :n) do |vimizer, opt|
@@ -83,9 +79,9 @@ v.define(Vimizer::Key.new('w'), :n) do |vimizer, opt|
   pos = pbox.buffer.cursor_position
   text = pbox.buffer.text
   new_index = Tango.next_word_head(text, pos)
-  unless new_index - pos == 0
-    pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, new_index - pos, false)
-  end
+
+  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox.go(new_index)
 end
 
 v.define(Vimizer::Key.new('b'), :n) do |vimizer, opt|
@@ -93,9 +89,9 @@ v.define(Vimizer::Key.new('b'), :n) do |vimizer, opt|
   pos = pbox.buffer.cursor_position
   text = pbox.buffer.text
   new_index = Tango.prev_word_head(text, pos)
-  unless new_index - pos > 0
-    pbox.move_cursor(Gtk::MOVEMENT_VISUAL_POSITIONS, new_index - pos, false)
-  end
+
+  pbox = PostBox.new(Vimizer.get_postbox(opt))
+  pbox.go(new_index)
 end
 
 v.plugin_eval do
