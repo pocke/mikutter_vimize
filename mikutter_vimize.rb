@@ -2,7 +2,7 @@
 # Licensed MIT
 # http://opensource.org/licenses/mit-license.php
 
-require_relative 'lib/vimize'
+require_relative 'lib/vimizer'
 require_relative 'lib/tango'
 
 
