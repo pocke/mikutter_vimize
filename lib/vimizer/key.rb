@@ -20,6 +20,6 @@ class Vimizer::Key
   end
 
   def to_config
-    "#{'Control + ' if @ctrl}#{'Shift + ' if @shift}#{'Alt + ' if @meta}#{@main}"
+    "#{'Control + ' if @ctrl}#{'Shift + ' if @shift}#{'Alt + ' if @meta}#{@shift ? @main.upcase : @main}"
   end
 end

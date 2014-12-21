@@ -97,13 +97,13 @@ describe Vimizer::Key do
     context 'when shift on' do
       let(:modifyer_keys){{shift: true}}
 
-      it{is_expected.to eq "Shift + h"}
+      it{is_expected.to eq "Shift + H"}
     end
 
     context 'when ctrl, shift and meta on' do
       let(:modifyer_keys){{meta: true, ctrl: true, shift: true}}
 
-      it{is_expected.to eq "Control + Shift + Alt + h"}
+      it{is_expected.to eq "Control + Shift + Alt + H"}
     end
   end
 end

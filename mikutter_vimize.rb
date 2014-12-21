@@ -44,6 +44,25 @@ v.define(Vimizer::Key.new('a'), :n) do |vimizer, opt|
   pbox.move(:right, 1)
 end
 
+v.define(Vimizer::Key.new('i', shift: true), :n) do |vimizer, opt|
+  vimizer.mode = :i
+  pbox = Vimizer.get_postbox(opt)
+  t = pbox.text
+  pos = pbox.cursor_position
+  to = t.rindex("\n", pos - 1) || -1
+  to += 1
+  pbox.go(to)
+end
+
+v.define(Vimizer::Key.new('a', shift: true), :n) do |vimizer, opt|
+  vimizer.mode = :i
+  pbox = Vimizer.get_postbox(opt)
+  t = pbox.text
+  pos = pbox.cursor_position
+  to = t.index("\n", pos) || t.size
+  pbox.go(to)
+end
+
 v.define(Vimizer::Key.new('h'), :n) do |vimizer, opt|
   pbox = Vimizer.get_postbox(opt)
   pbox.move(:left, 1)
