@@ -20,6 +20,8 @@ v.define(Vimizer::Key.new('h', ctrl: true), :i) do |vimizer, opt|
 end
 
 v.define(Vimizer::Key.new('Escape'), :i) do |vimizer, opt|
+  pbox = Vimizer.get_postbox(opt)
+  pbox.move(:left, 1)
   vimizer.mode = :n
 end
 
